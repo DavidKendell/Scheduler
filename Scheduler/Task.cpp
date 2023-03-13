@@ -5,7 +5,6 @@
 void Task::updateTitle()
 {
 	std::cout << "Enter title (must not be blank):\n";
-	std::cin.ignore();
 	do {
 		getline(std::cin, title);
 	} while (title.find_first_not_of(" \t\n\v\f\r") == std::string::npos);
@@ -13,6 +12,7 @@ void Task::updateTitle()
 
 void Task::updateDate()
 {
+	date = "";
 	int year = getYear();
 	int month = getMonth();
 	getDay(year, month);
@@ -22,14 +22,12 @@ void Task::updateDate()
 void Task::updateDescription()
 {
 	std::cout << "Enter a brief description:\n";
-	std::cin.ignore();
 	getline(std::cin, description);
 }
 
 void Task::updateLocation()
 {
 	std::cout << "Enter location:\n";
-	std::cin.ignore();
 	getline(std::cin, location);
 }
 
@@ -40,6 +38,7 @@ void Task::updateTask()
 		std::cout << "Update title? y/n\n";
 		std::cin >> ch;
 		if (ch == 'y') {
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			updateTitle();
 		}
 	} while (ch != 'y' && ch != 'n');
@@ -47,6 +46,7 @@ void Task::updateTask()
 		std::cout << "Update date? y/n\n";
 		std::cin >> ch;
 		if (ch == 'y') {
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			updateDate();
 		}
 	} while (ch != 'y' && ch != 'n');
@@ -54,6 +54,7 @@ void Task::updateTask()
 		std::cout << "Update description? y/n\n";
 		std::cin >> ch;
 		if (ch == 'y') {
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			updateDescription();
 		}
 	} while (ch != 'y' && ch != 'n');
@@ -61,6 +62,7 @@ void Task::updateTask()
 		std::cout << "Update location? y/n\n";
 		std::cin >> ch;
 		if (ch == 'y') {
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			updateLocation();
 		}
 	} while (ch != 'y' && ch != 'n');
